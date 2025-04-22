@@ -1,0 +1,26 @@
+curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/main/creativity/welcome.sh
+if [[ ! -f welcome.sh ]]; then
+  echo "Download failed or file not found!"
+  exit 1
+fi
+chmod +x welcome.sh
+./welcome.sh
+
+
+
+
+
+sudo useradd researcher9
+
+sudo usermod -aG research_team researcher9
+
+sudo chown researcher9:research_team /home/researcher2/projects/project_r.txt
+
+sudo usermod -aG sales_team researcher9
+
+
+
+
+curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/refs/heads/main/creativity/subscribe.sh
+chmod +x subscribe.sh
+./subscribe.sh

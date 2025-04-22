@@ -1,0 +1,82 @@
+![API Gateway Banner](https://raw.githubusercontent.com/Cloud-Hustlers/content/f9a8642976ea21cd234c91239431e41f05264842/gif/12.gif)
+
+<div align="center">
+  
+# Connect with Cloud Hustlers Community
+</div>
+
+<p align="center">
+  <a href="https://whatsapp.cloudhustlers.in" target="_blank">
+    <img src="https://raw.githubusercontent.com/Cloud-Hustlers/content/main/gif/whatsapp.gif" alt="WhatsApp" width="80">
+  </a>
+  <a href="https://in.linkedin.com/company/cloud-hustlers" target="_blank">
+    <img src="https://raw.githubusercontent.com/Cloud-Hustlers/content/main/gif/linkedin%20gif.gif" alt="LinkedIn" width="80">
+  </a>
+  <a href="https://www.youtube.com/@CloudHustlers" target="_blank">
+    <img src="https://raw.githubusercontent.com/Cloud-Hustlers/content/main/gif/youtube.png" alt="Youtube" width="80">
+  </a>
+  <a href="https://instagram.com/cloud_hustlers" target="_blank">
+    <img src="https://raw.githubusercontent.com/Cloud-Hustlers/content/main/gif/insta.gif" alt="Instagram" width="80">
+  </a>
+  <a href="https://discord.gg/MdbVq7BJNd" target="_blank">
+    <img src="https://raw.githubusercontent.com/Cloud-Hustlers/content/main/gif/discord.gif" alt="GitHub" width="80">
+  </a>
+</p>
+
+
+## 🚀 Build a RAG Solution with Firebase Genkit | [Lab Link](https://www.cloudskillsboost.google/focuses/110506?parent=catalog)
+
+### 🔗 **Solution Video:** [Watch Here](https://www.youtube.com/@CloudHustlers/videos)
+
+---
+
+## ⚠️ **Disclaimer:**
+This script and guide are provided for educational purposes to help you understand the lab process. Before using the script, I encourage you to open and review it to understand each step. Please make sure you follow Qwiklabs' terms of service and YouTube’s community guidelines. The goal is to enhance your learning experience, not to bypass it.
+
+
+## 🌐 **Quick Start Guide:**
+
+**Launch Cloud Shell:**
+Start your Google CloudShell session by [clicking here](https://console.cloud.google.com/home/dashboard?project=&pli=1&cloudshell=true).
+
+
+
+```bash
+curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/master/Build%20a%20RAG%20Solution%20with%20Firebase%20Genkit/task1.sh
+sudo chmod +x task1.sh
+./task1.sh
+```
+- This runs the script to set up your environment for the lab. It will provision resources and configure them as needed.
+---
+
+- Need to perform `Task 3` Manually :)
+
+- ---
+
+`Make sure your're running below command on new terminal.`
+
+```bash
+curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/master/Build%20a%20RAG%20Solution%20with%20Firebase%20Genkit/task4.sh
+sudo chmod +x task4.sh
+./task4.sh
+```
+
+---
+
+## 🎉 **Lab Completed!**
+
+You've successfully completed the lab! Great job on working through the process.
+
+### 🌟 **Stay Connected!**
+
+- 🔔 **Join our [Telegram Channel](https://t.me/Cloud_Hustlers)** for the latest updates.
+- 🗣 **Participate in the [Discussion Group](https://t.me/Cloud_Hustlers)** to engage with other learners.
+- 💬 **Join our [Discord Server](https://discord.gg/STKYdjyv)** for more interactive discussions.
+- 💼 **Follow us on [LinkedIn](https://www.linkedin.com/company/hustler-linkedin/)** for news and opportunities.
+📸 **Follow us on [Instagram](https://www.instagram.com/cloud_hustlers/)** for the latest updates.
+
+
+---
+---
+
+
