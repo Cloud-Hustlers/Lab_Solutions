@@ -26,7 +26,7 @@
 
 
 
-## 🚀 Monitoring a Compute Engine using Ops Agent Azure | 
+## 🚀 Monitoring Applications in Google Cloud | 
 
 ### 🔗 **Solution Video:** [Watch Here](https://www.youtube.com/@CloudHustlers/videos)
 
@@ -39,16 +39,25 @@
 
 
 ```bash
-export ZONE=
+export REGION=
 ```
 
 
 ```bash
-curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Monitoring%20a%20Compute%20Engine%20using%20Ops%20Agent%20AWS/hustler.sh
+curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Monitoring%20Applications%20in%20Google%20Cloud/shell-1.sh
 
-sudo chmod +x hustler.sh
+sudo chmod +x shell-1.sh
 
-./hustler.sh
+./shell-1.sh
+
+```
+
+```bash
+curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Monitoring%20Applications%20in%20Google%20Cloud/shell-2.sh
+
+sudo chmod +x shell-2.sh
+
+./shell-2.sh
 
 ```
 
