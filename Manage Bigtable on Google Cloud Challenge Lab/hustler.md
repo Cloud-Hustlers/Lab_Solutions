@@ -31,8 +31,7 @@
 ---
 
 ## ⚠️ **Disclaimer:**
-This script and guide are provided for educational purposes to help you understand the lab process. Before using the script, I encourage you to open and review it to understand each step. Please make sure you follow Qwiklabs' terms of service and YouTube’s community guidelines. The goal is to enhance your learning experience, not to bypass it.
-
+This script and guide are provided for educational purposes to help you understand the lab process.
 
 ## 🌐 **Quick Start Guide:**
 
@@ -40,21 +39,11 @@ This script and guide are provided for educational purposes to help you understa
 Start your Google CloudShell session by [clicking here](https://console.cloud.google.com/home/dashboard?project=&pli=1&cloudshell=true).
 
 ```bash  
-curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Manage%20Bigtable%20on%20Google%20Cloud%20Challenge%20Lab/hustlergsp380.sh
+curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Manage%20Bigtable%20on%20Google%20Cloud%20Challenge%20Lab/gsp380.sh
 
-sudo chmod +x hustlergsp380.sh
+sudo chmod +x gsp380.sh
 
-./hustlergsp380.sh
-```
-
-### ***```Once you get a score on first 4 task then only run the below commands:-```*** 
-
-
-```
-gcloud bigtable backups delete PersonalizedProducts_7 --instance=ecommerce-recommendations \
-  --cluster=ecommerce-recommendations-c1  --quiet
-
-gcloud bigtable instances delete ecommerce-recommendations --quiet
+./gsp380.sh
 ```
 
 
