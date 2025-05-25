@@ -1,3 +1,26 @@
+
+BLACK=`tput setaf 0`
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+YELLOW=`tput setaf 3`
+BLUE=`tput setaf 4`
+MAGENTA=`tput setaf 5`
+CYAN=`tput setaf 6`
+WHITE=`tput setaf 7`
+
+BG_BLACK=`tput setab 0`
+BG_RED=`tput setab 1`
+BG_GREEN=`tput setab 2`
+BG_YELLOW=`tput setab 3`
+BG_BLUE=`tput setab 4`
+BG_MAGENTA=`tput setab 5`
+BG_CYAN=`tput setab 6`
+BG_WHITE=`tput setab 7`
+
+BOLD=`tput bold`
+RESET=`tput sgr0`
+#----------------------------------------------------start--------------------------------------------------#
+
 curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/main/creativity/welcome.sh
 if [[ ! -f welcome.sh ]]; then
   echo "Download failed or file not found!"
@@ -8,59 +31,58 @@ chmod +x welcome.sh
 
 
 
+echo "${YELLOW}${BOLD}Starting${RESET}" "${GREEN}${BOLD}Execution${RESET}"
 
 gcloud config set compute/zone $ZONE
 
 gsutil -m cp -r gs://spls/gsp053/orchestrate-with-kubernetes .
-cd orchestrate-with-kubernetes/kubernetes
 
+cd orchestrate-with-kubernetes/kubernetes
 
 gcloud container clusters create bootcamp \
   --machine-type e2-small \
   --num-nodes 3 \
   --scopes "https://www.googleapis.com/auth/projecthosting,storage-rw"
 
-kubectl explain deployment
-
-kubectl explain deployment --recursive
-
-kubectl explain deployment.metadata.name
-
-
-
-sed -i "s/auth:2.0.0/auth:1.0.0/" deployments/auth.yaml
+sed -i 's/image: "kelseyhightower\/auth:2.0.0"/image: "kelseyhightower\/auth:1.0.0"/' deployments/auth.yaml
 
 kubectl create -f deployments/auth.yaml
 
 kubectl get deployments
-
-kubectl get replicasets
 
 kubectl get pods
 
 kubectl create -f services/auth.yaml
 
 kubectl create -f deployments/hello.yaml
+
 kubectl create -f services/hello.yaml
 
-
 kubectl create secret generic tls-certs --from-file tls/
+
 kubectl create configmap nginx-frontend-conf --from-file=nginx/frontend.conf
+
 kubectl create -f deployments/frontend.yaml
+
 kubectl create -f services/frontend.yaml
 
 kubectl get services frontend
 
+sleep 10
 
-sed -i "s/auth:1.0.0/auth:2.0.0/" deployments/auth.yaml
+kubectl scale deployment hello --replicas=5
+
+kubectl get pods | grep hello- | wc -l
+
+kubectl scale deployment hello --replicas=3
+
+kubectl get pods | grep hello- | wc -l
+
+sed -i 's/image: "kelseyhightower\/auth:1.0.0"/image: "kelseyhightower\/auth:2.0.0"/' deployments/hello.yaml
 
 kubectl get replicaset
 
 kubectl rollout history deployment/hello
-
-kubectl rollout pause deployment/hello
-
-kubectl rollout status deployment/hello
 
 kubectl get pods -o jsonpath --template='{range .items[*]}{.metadata.name}{"\t"}{"\t"}{.spec.containers[0].image}{"\n"}{end}'
 
@@ -72,18 +94,15 @@ kubectl rollout undo deployment/hello
 
 kubectl rollout history deployment/hello
 
+kubectl get pods -o jsonpath --template='{range .items[*]}{.metadata.name}{"\t"}{"\t"}{.spec.containers[0].image}{"\n"}{end}'
+
 kubectl create -f deployments/hello-canary.yaml
 
 kubectl get deployments
 
+echo "${RED}${BOLD}Congratulations${RESET}" "${WHITE}${BOLD}for${RESET}" "${GREEN}${BOLD}Completing the Lab !!!${RESET}"
 
-kubectl apply -f services/hello-blue.yaml
-
-kubectl create -f deployments/hello-green.yaml
-
-curl -ks https://`kubectl get svc frontend -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version
-
-kubectl apply -f services/hello-green.yaml
+#-----------------------------------------------------end----------------------------------------------------------#
 
 curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/refs/heads/main/creativity/subscribe.sh
 chmod +x subscribe.sh
