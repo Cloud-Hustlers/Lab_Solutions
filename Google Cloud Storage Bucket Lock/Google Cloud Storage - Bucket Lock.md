@@ -23,18 +23,45 @@
   </a>
 </p>
 
+## 🚀 Google Cloud Storage - Bucket Lock|| [GSP297](https://www.cloudskillsboost.google/course_templates/725/labs/461638)
 
-## **Google Cloud Storage - Bucket Lock**
+### 🔗 **Solution Video:** [Watch Here](https://www.youtube.com/@CloudHustlers/videos)
 
-## **Just Copy & Paste the commands**
+---
+
+## 🌐 **Quick Start Guide:**
+
+**Launch Cloud Shell:**  
+ Start your Google CloudShell session by [clicking here](https://console.cloud.google.com/home/dashboard?project=&pli=1&cloudshell=true).
+### Run the following Commands in CloudShell
+
+
+Run the following Commands in CloudShell
 
 ```
-curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Google%20Cloud%20Storage%20Bucket%20Lock/hustlergsp297.sh
+export REGION=
+```
 
-sudo chmod +x hustlergsp297.sh
+```
+curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Google%20Cloud%20Storage%20Bucket%20Lock/gsp297.sh
 
-./hustlergsp297.sh
+sudo chmod +x gsp297.sh
+
+./gsp297.sh
 ```
 
 
-## Congratulation
+## 🎉 **Lab Completed!**
+
+You've successfully demonstrated your skills and determination by completing the lab. **Well done!**
+
+### 🌟 **Stay Connected!**
+
+- 🔔 **Join our [Telegram Channel](https://t.me/Cloud_Hustlers)** for the latest updates.
+- 🗣 **Participate in the [Discussion Group](https://t.me/Cloud_Hustlers)** and engage with fellow learners.
+- 💬 **Join our [Discord Server](https://discord.gg/STKYdjyv)** for more interactive discussions.
+- 💼 **Follow us on [LinkedIn](https://www.linkedin.com/company/hustler-linkedin/)** to stay updated with the latest news and opportunities.
+
+---
+
+---
