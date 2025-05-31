@@ -33,11 +33,11 @@ export REGION=
 
 
 ```
-curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Dataplex%20Qwik%20Start%20Console/hustlertask1.sh
+curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Dataplex%20Qwik%20Start%20Console/task1.sh
 
-sudo chmod +x hustlertask1.sh
+sudo chmod +x task1.sh
 
-./hustlertask1.sh
+./task1.sh
 ```
 ### ***Now Check the score for First 3 Task  & then go ahead with next Commands.***
 
@@ -46,11 +46,11 @@ sudo chmod +x hustlertask1.sh
 
 
 ```
-curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Dataplex%20Qwik%20Start%20Console/hustlertask2.sh
+curl -LO raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/refs/heads/main/Dataplex%20Qwik%20Start%20Console/task2.sh
 
-sudo chmod +x hustlertask2.sh
+sudo chmod +x task2.sh
 
-./hustlertask2.sh
+./task2.sh
 ```
 
 ### Congratulation!!!
