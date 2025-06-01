@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/Cloud-Hustlers/Lab_Solutions/main/Extract
 
 mv sign.jpg demo-image.png
 
-export OBJECT==$(realpath demo-image.png)
+export OBJECT=$(realpath demo-image.png)
 
 export BUCKET_NAME=$DEVSHELL_PROJECT_ID-bucket 
 
