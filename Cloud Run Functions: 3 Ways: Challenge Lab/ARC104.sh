@@ -30,7 +30,19 @@ fi
 chmod +x welcome.sh
 ./welcome.sh
 
-echo "${BG_MAGENTA}${BOLD}Starting Execution${RESET}"
+read -p "Enter Function Name: " FUNCTION_NAME
+echo
+
+read -p "Enter HTTP Function Name: " HTTP_FUNCTION
+echo
+
+read -p "Enter Region: " REGION
+echo
+
+
+export HTTP_FUNCTION=$HTTP_FUNCTION
+export FUNCTION_NAME=$FUNCTION_NAME
+export REGION=$REGION
 
 gcloud services enable \
   artifactregistry.googleapis.com \
@@ -41,8 +53,6 @@ gcloud services enable \
   logging.googleapis.com \
   pubsub.googleapis.com
 
-sleep 30
-
 PROJECT_NUMBER=$(gcloud projects list --filter="project_id:$DEVSHELL_PROJECT_ID" --format='value(project_number)')
 
 SERVICE_ACCOUNT=$(gsutil kms serviceaccount -p $PROJECT_NUMBER)
@@ -50,6 +60,7 @@ SERVICE_ACCOUNT=$(gsutil kms serviceaccount -p $PROJECT_NUMBER)
 gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
   --member serviceAccount:$SERVICE_ACCOUNT \
   --role roles/pubsub.publisher
+echo
 
 gsutil mb -l $REGION gs://$DEVSHELL_PROJECT_ID
 
@@ -89,6 +100,7 @@ deploy_function() {
   --max-instances 2 \
   --quiet
 }
+
 
 # Loop until the Cloud Run service is created
 while true; do
