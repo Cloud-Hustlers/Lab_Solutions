@@ -1,11 +1,13 @@
 #!/bin/bash
 
-echo "Welcome To Cloud Hustlers"
 
 NO_COLOR=$'\033[0m'
 RESET_FORMAT=$'\033[0m'
 BOLD_TEXT=$'\033[1m'
 UNDERLINE_TEXT=$'\033[4m'
+echo"_____________________________________________________________________________________________"
+echo "${BOLD_TEXT}Welcome To Cloud Hustlers"
+echo"_____________________________________________________________________________________________"
 
 # Function for error handling
 function error_handler() {
@@ -109,8 +111,4 @@ else
 fi
 
 
-
-
-curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/refs/heads/main/creativity/subscribe.sh
-chmod +x subscribe.sh
-./subscribe.sh
+echo "${BOLD_TEXT}Subscribe To Cloud Hustlers"
