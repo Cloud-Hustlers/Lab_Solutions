@@ -6,8 +6,6 @@ if [[ ! -f welcome.sh ]]; then
 fi
 chmod +x welcome.sh
 ./welcome.sh
-
-
 # Define color variables
 YELLOW_TEXT=$'\033[0;33m'
 MAGENTA_TEXT=$'\033[0;35m'
@@ -56,8 +54,10 @@ echo "${GREEN_TEXT}${BOLD_TEXT}The WebAudio application is now running!${RESET_F
 # if [ -f "$SCRIPT_NAME" ]; then
 #     echo -e "${BOLD_TEXT}${RED_TEXT}Deleting the script ($SCRIPT_NAME) for safety purposes...${RESET_FORMAT}${NO_COLOR}"
 #     rm -- "$SCRIPT_NAME"
-# 
+# fi
 
-curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/refs/heads/main/creativity/subscribe.sh
-chmod +x subscribe.sh
-./subscribe.sh
+echo
+# Completion message
+echo -e "${MAGENTA_TEXT}${BOLD_TEXT}Lab Completed Successfully!${RESET_FORMAT}"
+echo -e "${GREEN_TEXT}${BOLD_TEXT}Subscribe our Channel:${RESET_FORMAT} ${BLUE_TEXT}${BOLD_TEXT}https://www.youtube.com/@Arcade61432${RESET_FORMAT}"
+echo
