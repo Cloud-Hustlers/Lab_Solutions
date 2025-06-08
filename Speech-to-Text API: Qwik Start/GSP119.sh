@@ -5,11 +5,11 @@ NO_COLOR=$'\033[0m'
 RESET_FORMAT=$'\033[0m'
 BOLD_TEXT=$'\033[1m'
 UNDERLINE_TEXT=$'\033[4m'
-CYAN_TEXT=$'\033[0;96m'
 
-echo "${CYAN_TEXT}${BOLD_TEXT}=======================================${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}         WELCOME TO CLOUD HUSTLERS     ${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}=======================================${RESET_FORMAT}"
+
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo "${BOLD_TEXT}         WELCOME TO CLOUD HUSTLERS     ${RESET_FORMAT}"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
 echo ""
 
 
@@ -114,7 +114,7 @@ else
     cat result.json
 fi
 
-echo "${CYAN_TEXT}${BOLD_TEXT}=======================================${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}         SUBSCRIBE TO CLOUD HUSTLERS   ${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo "${BOLD_TEXT}         SUBSCRIBE TO CLOUD HUSTLERS   ${RESET_FORMAT}"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
 echo ""
