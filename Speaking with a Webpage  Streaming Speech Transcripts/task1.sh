@@ -6,7 +6,13 @@ fi
 chmod +x welcome.sh
 ./welcome.sh
 
+CYAN_TEXT=$'\033[0;36m'
+BOLD_TEXT=`tput bold`
 
+echo
+echo "${CYAN_TEXT}${BOLD_TEXT}Please enter the ZONE:${RESET_FORMAT}"
+read ZONE
+export ZONE
 
 gcloud compute instances create speaking-with-a-webpage --project=$DEVSHELL_PROJECT_ID --zone=$ZONE --machine-type=e2-medium --network-interface=network-tier=PREMIUM,stack-type=IPV4_ONLY,subnet=default --metadata=enable-oslogin=true --maintenance-policy=MIGRATE --provisioning-model=STANDARD  --scopes=https://www.googleapis.com/auth/cloud-platform --tags=http-server,https-server --create-disk=auto-delete=yes,boot=yes,device-name=speaking-with-a-webpage,image=projects/debian-cloud/global/images/debian-11-bullseye-v20230711,mode=rw,size=10,type=projects/$DEVSHELL_PROJECT_ID/zones/$ZONE/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --labels=goog-ec-src=vm_add-gcloud --reservation-affinity=any
 
