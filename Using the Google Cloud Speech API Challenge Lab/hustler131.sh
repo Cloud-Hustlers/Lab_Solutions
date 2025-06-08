@@ -15,13 +15,10 @@ RESET_FORMAT=$'\033[0m'
 BOLD_TEXT=$'\033[1m'
 UNDERLINE_TEXT=$'\033[4m'
 
-curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/main/creativity/welcome.sh
-if [[ ! -f welcome.sh ]]; then
-  echo "Download failed or file not found!"
-  exit 1
-fi
-chmod +x welcome.sh
-./welcome.sh
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo "${BOLD_TEXT}         WELCOME TO CLOUD HUSTLERS     ${RESET_FORMAT}"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo ""
 
 # Instructions for API Key
 echo "${YELLOW_TEXT} ${BOLD_TEXT} STEP 1: Enter your Google Cloud API Key: ${RESET_FORMAT}"
@@ -100,6 +97,7 @@ echo "${YELLOW_TEXT}${BOLD_TEXT} STEP 5: Sending Request for Spanish Speech Reco
 curl -s -X POST -H "Content-Type: application/json" --data-binary @"$REQUEST_SP_CP3" \
 "https://speech.googleapis.com/v1/speech:recognize?key=$API_KEY" > $RESPONSE_SP_CP3
 
-curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/refs/heads/main/creativity/subscribe.sh
-chmod +x subscribe.sh
-./subscribe.sh
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo "${BOLD_TEXT}         SUBSCRIBE TO CLOUD HUSTLERS   ${RESET_FORMAT}"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo ""
