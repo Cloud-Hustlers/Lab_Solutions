@@ -56,8 +56,6 @@ echo "${GREEN_TEXT}${BOLD_TEXT}The WebAudio application is now running!${RESET_F
 #     rm -- "$SCRIPT_NAME"
 # fi
 
-echo
-# Completion message
-echo -e "${MAGENTA_TEXT}${BOLD_TEXT}Lab Completed Successfully!${RESET_FORMAT}"
-echo -e "${GREEN_TEXT}${BOLD_TEXT}Subscribe our Channel:${RESET_FORMAT} ${BLUE_TEXT}${BOLD_TEXT}https://www.youtube.com/@Arcade61432${RESET_FORMAT}"
-echo
+curl -LO https://raw.githubusercontent.com/Cloud-Hustlers/content/refs/heads/main/creativity/subscribe.sh
+chmod +x subscribe.sh
+./subscribe.sh
