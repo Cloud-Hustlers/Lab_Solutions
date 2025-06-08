@@ -5,9 +5,12 @@ NO_COLOR=$'\033[0m'
 RESET_FORMAT=$'\033[0m'
 BOLD_TEXT=$'\033[1m'
 UNDERLINE_TEXT=$'\033[4m'
-echo"_____________________________________________________________________________________________:${RESET_FORMAT}"
-echo "${BOLD_TEXT}Welcome To Cloud Hustlers"
-echo"_____________________________________________________________________________________________:${RESET_FORMAT}"
+
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo "${BOLD_TEXT}         WELCOME TO CLOUD HUSTLERS     ${RESET_FORMAT}"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo ""
+
 
 # Function for error handling
 function error_handler() {
@@ -110,5 +113,7 @@ else
     cat result.json
 fi
 
-
-echo "${BOLD_TEXT}Subscribe To Cloud Hustlers"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo "${BOLD_TEXT}         SUBSCRIBE TO CLOUD HUSTLERS   ${RESET_FORMAT}"
+echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
+echo ""
