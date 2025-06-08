@@ -15,10 +15,13 @@ RESET_FORMAT=$'\033[0m'
 BOLD_TEXT=$'\033[1m'
 UNDERLINE_TEXT=$'\033[4m'
 
+
+clear
 echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
 echo "${BOLD_TEXT}         WELCOME TO CLOUD HUSTLERS     ${RESET_FORMAT}"
 echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
 echo ""
+
 
 # Instructions for API Key
 echo "${YELLOW_TEXT} ${BOLD_TEXT} STEP 1: Enter your Google Cloud API Key: ${RESET_FORMAT}"
@@ -101,3 +104,6 @@ echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
 echo "${BOLD_TEXT}         SUBSCRIBE TO CLOUD HUSTLERS   ${RESET_FORMAT}"
 echo "${BOLD_TEXT}=======================================${RESET_FORMAT}"
 echo ""
+
+
+
