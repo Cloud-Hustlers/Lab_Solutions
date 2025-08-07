@@ -9,56 +9,62 @@ chmod +x welcome.sh
 
 
 
-gcloud config set compute/region $REGION
+gcloud auth list
 
-PROJECT_ID=$(gcloud config get-value project)
-PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
-export PROJECT_NUMBER
-
-gcloud services enable apigateway.googleapis.com
-gcloud services enable servicemanagement.googleapis.com
-gcloud services enable servicecontrol.googleapis.com --project=$PROJECT_ID
-gcloud services enable serviceusage.services.enable --project=$PROJECT_ID
-gcloud services enable cloudfunctions.googleapis.com --project=$PROJECT_ID
+gcloud services enable apigateway.googleapis.com --project $DEVSHELL_PROJECT_ID
+gcloud services enable run.googleapis.com --project $DEVSHELL_PROJECT_ID
 
 
-PROJECT_ID=$(gcloud config get-value project)
-PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
-export PROJECT_NUMBER
+export ZONE=$(gcloud compute project-info describe --format="value(commonInstanceMetadata.items[google-compute-default-zone])")
+export REGION=$(gcloud compute project-info describe --format="value(commonInstanceMetadata.items[google-compute-default-region])")
 
-gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
-  --role="roles/artifactregistry.reader"
+export PROJECT_ID=$(gcloud config get-value project)
 
-gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
-  --role="roles/serviceusage.serviceUsageAdmin"
+gcloud config set compute/zone "$ZONE"
+gcloud config set compute/region "$REGION"
+
+sleep 15
+
+export PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
+
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" --role="roles/serviceusage.serviceUsageAdmin"
+
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" --role="roles/artifactregistry.reader"
 
 
-
-sleep 20
 
 git clone https://github.com/GoogleCloudPlatform/nodejs-docs-samples.git
 
 cd nodejs-docs-samples/functions/helloworld/helloworldGet
 
-sleep 60
 
-gcloud functions deploy helloGET --runtime nodejs14 --trigger-http --allow-unauthenticated --region $REGION
+#!/bin/bash
 
-sleep 60
+deploy_function() {
+  gcloud functions deploy helloGET --runtime nodejs20 --trigger-http --allow-unauthenticated --region $REGION
+}
 
-gcloud functions deploy helloGET --runtime nodejs14 --trigger-http --allow-unauthenticated --region $REGION
+deploy_success=false
+
+while [ "$deploy_success" = false ]; do
+  if deploy_function; then
+    echo "Function deployed successfully."
+    deploy_success=true
+  else
+    echo "Retrying, please subscribe to techcps (https://www.youtube.com/@techcps)..."
+    sleep 30
+  fi
+done
+
 
 gcloud functions describe helloGET --region $REGION
-
 
 curl -v https://$REGION-$PROJECT_ID.cloudfunctions.net/helloGET
 
 cd ~
 
 
-cat > openapi2-functions.yaml <<EOF_END
+cat > openapi2-functions.yaml <<EOF_CP
 # openapi2-functions.yaml
 swagger: '2.0'
 info:
@@ -81,9 +87,12 @@ paths:
           description: A successful response
           schema:
             type: string
-EOF_END
+EOF_CP
+
+
 
 export API_ID="hello-world-$(cat /dev/urandom | tr -dc 'a-z' | fold -w ${1:-8} | head -n 1)"
+
 
 sed -i "s/API_ID/${API_ID}/g" openapi2-functions.yaml
 sed -i "s/PROJECT_ID/$PROJECT_ID/g" openapi2-functions.yaml
@@ -96,32 +105,28 @@ echo $API_ID
 
 gcloud api-gateway apis create "hello-world-api"  --project=$PROJECT_ID
 
-gcloud api-gateway api-configs create hello-world-config \
-  --api=$API_ID --openapi-spec=openapi2-functions.yaml \
-  --project=$PROJECT_ID --backend-auth-service-account=$PROJECT_NUMBER-compute@developer.gserviceaccount.com
+gcloud api-gateway api-configs create hello-world-config --project=$PROJECT_ID --api=$API_ID --openapi-spec=openapi2-functions.yaml --backend-auth-service-account=$PROJECT_NUMBER-compute@developer.gserviceaccount.com
 
-gcloud api-gateway gateways create hello-gateway \
-  --api=$API_ID --api-config=hello-world-config \
-  --location=$REGION --project=$PROJECT_ID
+gcloud api-gateway gateways create hello-gateway --location=$REGION --project=$PROJECT_ID --api=$API_ID --api-config=hello-world-config
 
 
 
+gcloud alpha services api-keys create --display-name="techcps"  
 
+KEY_NAME=$(gcloud alpha services api-keys list --format="value(name)" --filter "displayName=techcps") 
 
-
-gcloud alpha services api-keys create --display-name="hustler"  
-KEY_NAME=$(gcloud alpha services api-keys list --format="value(name)" --filter "displayName=hustler") 
 export API_KEY=$(gcloud alpha services api-keys get-key-string $KEY_NAME --format="value(keyString)") 
-echo $API_KEY
 
+echo $API_KEY
 
 MANAGED_SERVICE=$(gcloud api-gateway apis list --format json | jq -r .[0].managedService | cut -d'/' -f6)
 echo $MANAGED_SERVICE
 
+
 gcloud services enable $MANAGED_SERVICE
 
 
-cat > openapi2-functions2.yaml <<EOF_END
+cat > openapi2-functions2.yaml <<EOF_CP
 # openapi2-functions.yaml
 swagger: '2.0'
 info:
@@ -151,7 +156,7 @@ securityDefinitions:
     type: "apiKey"
     name: "key"
     in: "query"
-EOF_END
+EOF_CP
 
 
 sed -i "s/API_ID/${API_ID}/g" openapi2-functions2.yaml
@@ -159,30 +164,18 @@ sed -i "s/PROJECT_ID/$PROJECT_ID/g" openapi2-functions2.yaml
 
 
 
-
-gcloud api-gateway api-configs create hello-config \
-  --display-name="Hello Config" \
-  --api=$API_ID \
-  --openapi-spec=openapi2-functions2.yaml \
-  --project=$PROJECT_ID \
+gcloud api-gateway api-configs create hello-config --project=$PROJECT_ID \
+  --display-name="Hello Config" --api=$API_ID --openapi-spec=openapi2-functions2.yaml \
   --backend-auth-service-account=$PROJECT_ID@$PROJECT_ID.iam.gserviceaccount.com	
 
 
 
-gcloud api-gateway gateways update hello-gateway \
-  --api=$API_ID --api-config=hello-config \
-  --location=$REGION --project=$PROJECT_ID
+gcloud api-gateway gateways update hello-gateway --location=$REGION --project=$PROJECT_ID --api=$API_ID --api-config=hello-config
 
 
-gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
-  --role="roles/serviceusage.serviceUsageAdmin"
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$PROJECT_ID@$PROJECT_ID.iam.gserviceaccount.com" --role="roles/serviceusage.serviceUsageAdmin"
 
-
-gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member="serviceAccount:$PROJECT_ID@$PROJECT_ID.iam.gserviceaccount.com" \
-  --role="roles/serviceusage.serviceUsageAdmin"
-
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" --role="roles/serviceusage.serviceUsageAdmin"
 
 
 MANAGED_SERVICE=$(gcloud api-gateway apis list --format json | jq -r --arg api_id "$API_ID" '.[] | select(.name | endswith($api_id)) | .managedService' | cut -d'/' -f6)
@@ -195,6 +188,7 @@ export GATEWAY_URL=$(gcloud api-gateway gateways describe hello-gateway --locati
 curl -sL $GATEWAY_URL/hello
 
 curl -sL -w "\n" $GATEWAY_URL/hello?key=$API_KEY
+
 
 
 
